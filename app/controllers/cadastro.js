@@ -13,14 +13,14 @@ module.exports.cadastrar = function(app, req, res) {
     req.assert('nome', 'Nome não pode ser vazio.').notEmpty();
 
     var erros = req.validationErrors();
-    console.log(erros);
+
     if (erros) {
         res.render('cadastro', { validacao: erros, dadosForm: dadosForm });
         return;
     }
 
     var connection = app.config.dbConnection;
-    console.log(connection);
+
 
     var UsuariosDAO = new app.app.models.UsuariosDAO(connection);
 
