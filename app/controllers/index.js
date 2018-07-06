@@ -1,6 +1,6 @@
 module.exports.index = function(app, req, res) {
 
-    res.render('index', { validacao: {}, sucesso: {} });
+    res.render('index', { validacao: {}, sucesso: {}, dadosForm : {}  });
 }
 
 module.exports.autenticar = function(app, req, res) {
@@ -8,12 +8,11 @@ module.exports.autenticar = function(app, req, res) {
     var dadosForm = req.body;
 
     req.assert('usuario', 'Usuario não pode ser vazio.').notEmpty();
-    req.assert('senha', 'Senha não pode ser vazio.').notEmpty();
+    req.assert('senha', 'Senha não pode ser vazia.').notEmpty();
 
     var erros = req.validationErrors();
-
     if (erros) {
-        res.render("index", { validacao: erros, sucesso: {} });
+        res.render("index", { validacao: erros, sucesso: {}, dadosForm : dadosForm  });
 
         return;
     }
